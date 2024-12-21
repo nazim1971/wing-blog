@@ -35,6 +35,9 @@ class Config {
         if (!process.env.JWT_ACCESS_SECRET) {
             throw new Error('JWT_ACCESS_SECRET is required in .env file');
         }
+        if (!process.env.JWT_REFRESH_SECRET) {
+            throw new Error('JWT_REFRESH_SECRET is required in .env file');
+        }
     }
     // MongoDB connection method
     connectDB() {
@@ -63,6 +66,9 @@ class Config {
     }
     get jwt() {
         return String(process.env.JWT_ACCESS_SECRET);
+    }
+    get jwtRef() {
+        return String(process.env.JWT_REFRESH_SECRET);
     }
 }
 exports.default = new Config();
