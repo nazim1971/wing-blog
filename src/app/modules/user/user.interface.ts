@@ -11,10 +11,7 @@ export interface TUser {
     isBlocked: boolean;
 }
 
-export interface TLogin {
-	email: string;
-	password: string;
-}
+
 
 export interface UserModel extends Model<TUser> {
 	validateUser(email?: string): Promise<TUser>;

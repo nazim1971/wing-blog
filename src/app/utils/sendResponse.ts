@@ -3,9 +3,9 @@ import { Response } from 'express';
 export const sendResponse = <T>(
   res: Response,
   data: {
-    statusCode: number;
     success: boolean;
     message?: string;
+    statusCode: number;
     data: T;
   },
 ) => {
