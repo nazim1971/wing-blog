@@ -2,7 +2,7 @@
 # Wink-Blog Server
 
 ## Live Server Link
-[Runtime Realm](https://wing-blog.vercel.app)
+[Wink-blog](https://wing-blog.vercel.app)
 
 ## Table of Contents
 - [Overview](#overview)
