@@ -3,6 +3,8 @@ import { TUserRole } from '../modules/user/user.interface';
 import { catchAsync } from '../utils/catchAsync';
 import config from '../config';
 import { User } from '../modules/user/user.model';
+import { AppError } from '../error/AppError';
+import httpStatus from 'http-status';
 
 const auth = (...roles: TUserRole[]) => {
   return catchAsync(async (req, _res, next) => {
@@ -10,7 +12,7 @@ const auth = (...roles: TUserRole[]) => {
 
     // checking if the token is missing
     if (!token) {
-      throw new Error('You are not authorized!');
+      throw new AppError(httpStatus.UNAUTHORIZED ,'You are not authorized!');
     }
 
     // checking if the given token is valid
@@ -21,7 +23,7 @@ const auth = (...roles: TUserRole[]) => {
     await User.validateUser(email);
 
     if (roles && !roles.includes(role as TUserRole)) {
-      throw new Error('you are not authorized');
+      throw new AppError( httpStatus.UNAUTHORIZED,'you are not authorized');
     }
 
     req.user = decoded;
