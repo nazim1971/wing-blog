@@ -4,6 +4,7 @@ import { sendResponse } from '../../utils/sendResponse';
 import { BlogService } from './blog.service';
 import httpStatus from 'http-status';
 
+// Controller to create a new blog
 const createBlog = catchAsync(async (req, res) => {
    // console.log(req.headers['authorization']);
   const result = await BlogService.createBlogInDB(req.body, req.user?.email);
@@ -16,6 +17,7 @@ const createBlog = catchAsync(async (req, res) => {
   });
 });
 
+// Controller to update an existing blog
 const updateBlog = catchAsync(async (req, res) => {
   const id = new Types.ObjectId(req.params.id);
 
@@ -33,6 +35,7 @@ const updateBlog = catchAsync(async (req, res) => {
   });
 });
 
+// Controller to delete a blog
 const deleteBlog = catchAsync(async (req, res) => {
   await BlogService.deleteBlogDFromDB(req.params?.id, req.user?.email);
 
@@ -43,6 +46,7 @@ const deleteBlog = catchAsync(async (req, res) => {
   });
 });
 
+// Controller to fetch all blogs
 const getAllBlog = catchAsync(async (req, res) => {
   const result = await BlogService.getAllBlogFromDB(req.query);
 

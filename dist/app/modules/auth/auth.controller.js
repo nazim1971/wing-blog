@@ -23,12 +23,12 @@ const registerUser = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0
     const { _id, name, email } = result;
     (0, sendResponse_1.sendResponse)(res, {
         success: true,
-        message: 'User is login successfully',
+        message: 'User registered successfully',
         statusCode: http_status_1.default.CREATED,
         data: {
             _id,
             name,
-            email
+            email,
         },
     });
 }));
@@ -42,7 +42,7 @@ const loginUser = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0, v
     (0, sendResponse_1.sendResponse)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'User is login successfully',
+        message: 'Login successful',
         data: {
             token: accessToken,
         },
@@ -59,5 +59,7 @@ const refreshToken = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0
     });
 }));
 exports.AuthController = {
-    registerUser, loginUser, refreshToken
+    registerUser,
+    loginUser,
+    refreshToken,
 };

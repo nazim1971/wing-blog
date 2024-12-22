@@ -47,7 +47,7 @@ const userSchema = new mongoose_1.Schema({
     },
 }, {
     timestamps: true,
-    versionKey: false
+    versionKey: false,
 });
 // Hash Password before save in DB
 userSchema.pre('save', function (next) {

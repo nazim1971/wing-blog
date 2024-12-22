@@ -39,7 +39,7 @@ const blogSchema = new mongoose_1.Schema({
     },
 }, {
     timestamps: true,
-    versionKey: false
+    versionKey: false,
 });
 blogSchema.pre(/^find/, function (next) {
     const query = this;

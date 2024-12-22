@@ -40,7 +40,7 @@ const blockUser = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0, v
     (0, sendResponse_1.sendResponse)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'User blocked successfully!'
+        message: 'User blocked successfully!',
     });
 }));
 const deleteBlog = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -48,11 +48,11 @@ const deleteBlog = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0, 
     (0, sendResponse_1.sendResponse)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Blog deleted successfully!'
+        message: 'Blog deleted successfully!',
     });
 }));
 exports.AdminController = {
     loginAdmin,
     blockUser,
-    deleteBlog
+    deleteBlog,
 };

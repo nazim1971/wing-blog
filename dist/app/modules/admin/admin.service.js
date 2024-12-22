@@ -39,14 +39,13 @@ const loginAdmin = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     };
 });
 const blockUser = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = user_model_1.User.findById(id);
-    //   console.log(user);
+    const user = yield user_model_1.User.findById(id);
     if (!user) {
         throw new AppError_1.AppError(http_status_1.default.NOT_FOUND, 'User is not found');
     }
-    //   if(user?.isBlocked){
-    //     throw new AppError(httpStatus.NOT_FOUND, 'User is already blocked');
-    //   }
+    if (user === null || user === void 0 ? void 0 : user.isBlocked) {
+        throw new AppError_1.AppError(http_status_1.default.NOT_FOUND, 'User is already blocked');
+    }
     const result = yield user_model_1.User.findByIdAndUpdate(id, payload, {
         new: true,
     });

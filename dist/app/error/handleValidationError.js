@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const handleValidationError = (err) => {
-    const errorSources = Object.values(err.errors).map((val) => {
+    const error = Object.values(err.errors).map((val) => {
         // Updated types
         return {
             path: val === null || val === void 0 ? void 0 : val.path,
@@ -12,7 +12,7 @@ const handleValidationError = (err) => {
     return {
         statusCode,
         message: 'validation Error',
-        errorSources,
+        error,
     }; // Return the array of error sources
 };
 exports.default = handleValidationError;

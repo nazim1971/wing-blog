@@ -15,4 +15,7 @@ const refreshTokenValidationSchema = zod_1.z.object({
         required_error: 'Refresh token is required!',
     }),
 });
-exports.AuthValidation = { loginValidationSchema, refreshTokenValidationSchema };
+exports.AuthValidation = {
+    loginValidationSchema,
+    refreshTokenValidationSchema,
+};

@@ -53,7 +53,7 @@ const deleteBlogDFromDB = (id, email) => __awaiter(void 0, void 0, void 0, funct
     }
     const blog = yield blog_model_1.Blog.findOne({ _id: id, author: author._id });
     if (!blog) {
-        throw new AppError_1.AppError(http_status_1.default.NOT_FOUND, 'Your are not author of this blog ');
+        throw new AppError_1.AppError(http_status_1.default.UNAUTHORIZED, 'Your are not author of this blog ');
     }
     const result = yield blog_model_1.Blog.findByIdAndDelete(id);
     return result;

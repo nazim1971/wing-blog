@@ -60,7 +60,7 @@ const deleteBlogDFromDB = async (id: string, email?: string) => {
   const blog = await Blog.findOne({ _id: id, author: author._id });
   if (!blog) {
     throw new AppError(
-      httpStatus.NOT_FOUND,
+      httpStatus.UNAUTHORIZED,
       'Your are not author of this blog ',
     );
   }
