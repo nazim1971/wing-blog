@@ -18,6 +18,7 @@ const catchAsync_1 = require("../../utils/catchAsync");
 const sendResponse_1 = require("../../utils/sendResponse");
 const blog_service_1 = require("./blog.service");
 const http_status_1 = __importDefault(require("http-status"));
+// Controller to create a new blog
 const createBlog = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     // console.log(req.headers['authorization']);
@@ -29,6 +30,7 @@ const createBlog = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0, 
         data: result,
     });
 }));
+// Controller to update an existing blog
 const updateBlog = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const id = new mongoose_1.Types.ObjectId(req.params.id);
@@ -40,6 +42,7 @@ const updateBlog = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0, 
         data: result,
     });
 }));
+// Controller to delete a blog
 const deleteBlog = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
     yield blog_service_1.BlogService.deleteBlogDFromDB((_a = req.params) === null || _a === void 0 ? void 0 : _a.id, (_b = req.user) === null || _b === void 0 ? void 0 : _b.email);
@@ -49,6 +52,7 @@ const deleteBlog = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0, 
         statusCode: http_status_1.default.OK,
     });
 }));
+// Controller to fetch all blogs
 const getAllBlog = (0, catchAsync_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield blog_service_1.BlogService.getAllBlogFromDB(req.query);
     (0, sendResponse_1.sendResponse)(res, {
