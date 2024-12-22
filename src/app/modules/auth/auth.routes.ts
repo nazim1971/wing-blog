@@ -15,8 +15,10 @@ router.post(
 
 router.post(
 	'/login',
-	validateMiddlewire(AuthValidation.loginSchema),
+	validateMiddlewire(AuthValidation.loginValidationSchema),
 	AuthController.loginUser,
 );
+
+router.post('/refresh-token', AuthController.refreshToken);
 
 export const AuthRoute = router;

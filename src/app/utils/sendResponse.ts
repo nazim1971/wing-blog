@@ -6,12 +6,13 @@ export const sendResponse = <T>(
     success: boolean;
     message?: string;
     statusCode: number;
-    data: T;
+    data?: T;
   },
 ) => {
     res.status(data?.statusCode).json({
         success: data.success,
         message: data.message,
+        statusCode: data.statusCode,
         data: data.data,
     })
 };

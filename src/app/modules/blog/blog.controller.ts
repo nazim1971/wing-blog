@@ -1,19 +1,61 @@
-import { catchAsync } from "../../utils/catchAsync";
-import { sendResponse } from "../../utils/sendResponse";
-import { BlogService } from "./blog.service";
-import httpStatus from "http-status";
+import { Types } from 'mongoose';
+import { catchAsync } from '../../utils/catchAsync';
+import { sendResponse } from '../../utils/sendResponse';
+import { BlogService } from './blog.service';
+import httpStatus from 'http-status';
 
-const createBlog = catchAsync(async(req,res)=>{
-    const result = await BlogService.createBlogInDB(req.body)
+const createBlog = catchAsync(async (req, res) => {
+  const result = await BlogService.createBlogInDB(req.body, req.user?.email);
 
-    sendResponse(res,{
-        "success": true,
-        "message": "Blog created successfully",
-        "statusCode": httpStatus.CREATED,
-        "data": result
-    })
-})
+  sendResponse(res, {
+    success: true,
+    message: 'Blog created successfully',
+    statusCode: httpStatus.CREATED,
+    data: result,
+  });
+});
+
+const updateBlog = catchAsync(async (req, res) => {
+  const id = new Types.ObjectId(req.params.id);
+
+  const result = await BlogService.updateBlogInDB(
+    id,
+    req.body,
+    req?.user?.email,
+  );
+
+  sendResponse(res, {
+    success: true,
+    message: 'Blog updated successfully',
+    statusCode: httpStatus.CREATED,
+    data: result,
+  });
+});
+
+const deleteBlog = catchAsync(async (req, res) => {
+    await BlogService.deleteBlogDFromDB(req.params?.id, req.user?.email);
+
+    sendResponse(res, {
+      success: true,
+      message: 'Blog Deleted successfully',
+      statusCode: httpStatus.OK,
+    });
+  });
+
+  const getAllBlog = catchAsync(async (req, res) => {
+    const result = await BlogService.getAllBlogFromDB(req.query);
+  
+    sendResponse(res, {
+      success: true,
+      message: 'Blog created successfully',
+      statusCode: httpStatus.CREATED,
+      data: result,
+    });
+  });
 
 export const BlogController = {
-    createBlog
-}
+  createBlog,
+  updateBlog,
+  getAllBlog,
+  deleteBlog
+};

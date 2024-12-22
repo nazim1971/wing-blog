@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const loginSchema = z.object({
+const loginValidationSchema = z.object({
 	email: z.string().trim().email(),
 	password: z
 		.string()
@@ -9,4 +9,10 @@ const loginSchema = z.object({
 		.max(20, { message: 'Password cannot be more than 20 characters!' }),
 });
 
-export const AuthValidation = { loginSchema };
+ const refreshTokenValidationSchema = z.object({
+	refreshToken: z.string({
+	  required_error: 'Refresh token is required!',
+	}),
+  });
+
+export const AuthValidation = { loginValidationSchema, refreshTokenValidationSchema };

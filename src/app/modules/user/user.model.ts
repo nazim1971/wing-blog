@@ -3,6 +3,7 @@ import { TUser, UserModel } from './user.interface';
 import config from '../../config';
 import bcrypt from 'bcrypt';
 import { AppError } from '../../error/AppError';
+import httpStatus from 'http-status';
 
 const userSchema = new Schema<TUser, UserModel>(
   {
@@ -35,8 +36,10 @@ const userSchema = new Schema<TUser, UserModel>(
   },
   {
     timestamps: true,
+    versionKey: false
   },
 );
+
 
 // Hash Password before save in DB
 userSchema.pre('save', async function (next) {
@@ -81,5 +84,15 @@ userSchema.statics.isPasswordMatched = async function (
 ){
     return await bcrypt.compare(plainTextPassword, hashedPassword);
 }
+
+userSchema.statics.isUserExists = async function (payload: string) {
+  // Check if the payload is an email
+  if (payload.includes('@')) {
+    return await User.findOne({ email: payload }).select('+password');
+  } else {
+    // Otherwise, treat it as an ID
+    return await User.findById(payload).select('+password');
+  }
+};
 
 export const User = model<TUser,UserModel >('User', userSchema);
