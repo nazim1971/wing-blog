@@ -5,6 +5,7 @@ import { BlogService } from './blog.service';
 import httpStatus from 'http-status';
 
 const createBlog = catchAsync(async (req, res) => {
+   // console.log(req.headers['authorization']);
   const result = await BlogService.createBlogInDB(req.body, req.user?.email);
 
   sendResponse(res, {
@@ -27,7 +28,7 @@ const updateBlog = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     message: 'Blog updated successfully',
-    statusCode: httpStatus.CREATED,
+    statusCode: httpStatus.OK,
     data: result,
   });
 });
@@ -37,7 +38,7 @@ const deleteBlog = catchAsync(async (req, res) => {
 
   sendResponse(res, {
     success: true,
-    message: 'Blog Deleted successfully',
+    message: 'Blog deleted successfully',
     statusCode: httpStatus.OK,
   });
 });
@@ -47,8 +48,8 @@ const getAllBlog = catchAsync(async (req, res) => {
 
   sendResponse(res, {
     success: true,
-    message: 'Blog created successfully',
-    statusCode: httpStatus.CREATED,
+    message: 'Blogs fetched successfully',
+    statusCode: httpStatus.OK,
     data: result,
   });
 });

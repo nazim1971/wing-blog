@@ -30,7 +30,7 @@ const loginUser = async (payload: TLogin) => {
     user?.password,
   );
   if (!isPasswordMatch) {
-    throw new AppError(httpStatus.FORBIDDEN, 'Incorrect password');
+    throw new AppError(httpStatus.UNAUTHORIZED, 'Invalid credentials');
   }
 
   //create token and send to the client
