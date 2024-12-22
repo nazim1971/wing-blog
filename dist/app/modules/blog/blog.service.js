@@ -34,7 +34,7 @@ const createBlogInDB = (payload, email) => __awaiter(void 0, void 0, void 0, fun
 const updateBlogInDB = (id, payload, email) => __awaiter(void 0, void 0, void 0, function* () {
     const existingBlog = yield blog_model_1.Blog.findBlogById(id);
     if (existingBlog.author.email !== email) {
-        throw new AppError_1.AppError(http_status_1.default.INTERNAL_SERVER_ERROR, 'Could not cupdate!');
+        throw new AppError_1.AppError(http_status_1.default.FORBIDDEN, 'Could not update!');
     }
     const updatedBlog = yield blog_model_1.Blog.findOneAndUpdate({ _id: id }, payload, {
         runValidators: true,

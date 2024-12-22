@@ -35,7 +35,7 @@ const updateBlogInDB = async (
   const existingBlog = await Blog.findBlogById(id);
 
   if (existingBlog.author.email !== email) {
-    throw new AppError(httpStatus.INTERNAL_SERVER_ERROR, 'Could not cupdate!');
+    throw new AppError(httpStatus.FORBIDDEN, 'Could not update!');
   }
 
   const updatedBlog = await Blog.findOneAndUpdate({ _id: id }, payload, {
