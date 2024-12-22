@@ -5,7 +5,7 @@ import { User } from '../user/user.model';
 import config from '../../config';
 import { TUser } from '../user/user.interface';
 import { Blog } from '../blog/blog.model';
-import httpStatus from "http-status";
+import httpStatus from 'http-status';
 
 const loginAdmin = async (payload: TLogin) => {
   const admin = await User.validateUser(payload.email);
@@ -37,14 +37,14 @@ const loginAdmin = async (payload: TLogin) => {
 };
 
 const blockUser = async (id: string, payload: Pick<TUser, 'isBlocked'>) => {
-  const user = User.findById(id);
-//   console.log(user);
+  const user = await User.findById(id);
+
   if (!user) {
     throw new AppError(httpStatus.NOT_FOUND, 'User is not found');
   }
-//   if(user?.isBlocked){
-//     throw new AppError(httpStatus.NOT_FOUND, 'User is already blocked');
-//   }
+  if (user?.isBlocked) {
+    throw new AppError(httpStatus.NOT_FOUND, 'User is already blocked');
+  }
   const result = await User.findByIdAndUpdate(id, payload, {
     new: true,
   });

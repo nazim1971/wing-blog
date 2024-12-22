@@ -36,10 +36,9 @@ const userSchema = new Schema<TUser, UserModel>(
   },
   {
     timestamps: true,
-    versionKey: false
+    versionKey: false,
   },
 );
-
 
 // Hash Password before save in DB
 userSchema.pre('save', async function (next) {
@@ -49,9 +48,9 @@ userSchema.pre('save', async function (next) {
 
 // set '' after saving password
 userSchema.post('save', function (doc, next) {
-    doc.password = '';
-    next();
-  });
+  doc.password = '';
+  next();
+});
 
 // Static method to check if user exists
 userSchema.statics.validateUser = async function (email?: string) {
@@ -79,11 +78,11 @@ userSchema.statics.validateUser = async function (email?: string) {
 };
 
 userSchema.statics.isPasswordMatched = async function (
-    plainTextPassword,
-    hashedPassword
-){
-    return await bcrypt.compare(plainTextPassword, hashedPassword);
-}
+  plainTextPassword,
+  hashedPassword,
+) {
+  return await bcrypt.compare(plainTextPassword, hashedPassword);
+};
 
 userSchema.statics.isUserExists = async function (payload: string) {
   // Check if the payload is an email
@@ -95,4 +94,4 @@ userSchema.statics.isUserExists = async function (payload: string) {
   }
 };
 
-export const User = model<TUser,UserModel >('User', userSchema);
+export const User = model<TUser, UserModel>('User', userSchema);

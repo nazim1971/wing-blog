@@ -8,7 +8,7 @@ const handleDuplicateError = (err: any): TGenericErrorResponse => {
   // The extracted value will be in the first capturing group
   const extractedMessage = match && match[1];
 
-  const errorSources: TErrorSources = [
+  const error: TErrorSources = [
     {
       path: '',
       message: `${extractedMessage} is already exists`,
@@ -20,7 +20,7 @@ const handleDuplicateError = (err: any): TGenericErrorResponse => {
   return {
     statusCode,
     message: 'Duplicate Error',
-    errorSources,
+    error,
   };
 };
 
