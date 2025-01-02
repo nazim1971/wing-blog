@@ -16,7 +16,7 @@
 - [Error Handling](#error-handling)
 
 ## Overview
-**Runtime Realm Server** is a robust backend built for managing blogs with user authentication, role-based access control, and API functionalities. It supports Admin and User roles with tailored permissions and features.
+**Wink Blog** is a robust backend built for managing blogs with user authentication, role-based access control, and API functionalities. It supports Admin and User roles with tailored permissions and features.
 
 ## Key Features
 - **User Authentication & Authorization**: Secure login with role-based access control (Admin, User).
